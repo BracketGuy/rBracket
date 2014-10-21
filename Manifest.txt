@@ -1,0 +1,10 @@
+.autotest
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+Gemfile
+Gemfile.lock
+bin/r_bracket
+lib/r_bracket.rb
+test/test_r_bracket.rb
