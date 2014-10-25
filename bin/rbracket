@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
+require_relative "../lib/io.rb"
 
-abort "you need to write me"
+filename = handle_command_args()
+read_in_file(filename)
