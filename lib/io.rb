@@ -1,3 +1,5 @@
+require_relative "source_file_line"
+
 def handle_command_args
     if ARGV.length == 0
         puts "usage: bracket [filename]"
@@ -24,7 +26,7 @@ def read_in_file(filename)
         end
         count = count_lines_in_file(file)
         file.each_char do |c|
-            print c
+            puts "Got one!" if c == "\n"
         end
         puts "Processed #{count} lines."
     end
