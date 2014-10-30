@@ -18,6 +18,8 @@ class TestRBracket < Minitest::Test
 
     def test_source_file_add_line
         source_file = SourceFile.new(1)
-        SourceFile.add_line(1,"test line")
+        source_file_line = SourceFileLine.new(1,"test line")
+        source_file.add_line(source_file_line)
+        assert_equal source_file.lines[0], source_file_line
     end
 end
