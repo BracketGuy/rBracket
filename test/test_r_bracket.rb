@@ -22,4 +22,11 @@ class TestRBracket < Minitest::Test
         source_file.add_line(source_file_line)
         assert_equal source_file.lines[0], source_file_line
     end
+
+    def test_parser_strip_white_space
+        parser = Parser.new()
+        source_file_line = SourceFileLine.new(1,"line with	spaces")
+        stiped_line = parser.strip_white_space(source_file_line)
+        asser_equal striped_line.line_text, "linewithspaces"
+    end
 end
