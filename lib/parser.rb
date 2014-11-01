@@ -1,7 +1,9 @@
 class Parser
+    
+    attr_accessor :boxes
 
     def initialize()
-        #puts "HELLO!"
+        @boxes = [] 
     end
 
     def strip_white_space(source_file_line)
