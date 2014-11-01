@@ -18,7 +18,7 @@ class TestRBracket < Minitest::Test
     def test_source_file_line_create
         source_file_line = SourceFileLine.new(2,"test line")
         assert_equal source_file_line.line_number, 2
-        assert_equal "test line", source_file_line.line_text
+        assert_equal "test line", source_file_line.text
     end
 
     def test_source_file_add_line
@@ -34,16 +34,18 @@ class TestRBracket < Minitest::Test
         parser = Parser.new()
         source_file_line = SourceFileLine.new(1,"line with	spaces")
         striped_line = parser.strip_white_space(source_file_line)
-        assert_equal "linewithspaces", striped_line.line_text
+        assert_equal "linewithspaces", striped_line.text
     end
 
-    #def test_parser_scan_brackets
-    #    parser = Parser.new()
-    #    source_line_one = SourceFileLine.new(1,"[var:[val")
-    #    source_line_two = SourceFileLine.new(2,"]]")
-    #    parser.scan_brackets(source_line_one)
-    #    parser.scan_brackets(source_line_two)
-    #end
+    def test_parser_scan_brackets
+        parser = Parser.new()
+        source_line_one = SourceFileLine.new(1,"[var:[val")
+        source_line_two = SourceFileLine.new(2,"]]")
+        parser.scan_brackets(source_line_one)
+        parser.scan_brackets(source_line_two)
+        boxes = parser.boxes 
+        assert_equal 2, boxes.length
+    end
 
     #Box
 

@@ -1,7 +1,7 @@
 class SourceFileLine
-    attr_accessor :line_number, :line_text
-    def initialize(line_number, line_text)
+    attr_accessor :line_number, :text
+    def initialize(line_number, text)
         @line_number = line_number
-        @line_text = line_text
+        @text = text
     end
 end
