@@ -37,6 +37,13 @@ class TestRBracket < Minitest::Test
         assert_equal "linewithspaces", striped_line.text
     end
 
+    def test_parser_find_box
+        parser = Parser.new()
+        parser.boxes = [Box.new(1,1),Box.new(1,4)]
+        box = parser.find_box(10005)
+        assert_equal 10005, box.id
+    end
+
     def test_parser_scan_brackets
         parser = Parser.new()
         source_line_one = SourceFileLine.new(1,"[var:[val")
