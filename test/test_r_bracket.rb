@@ -45,6 +45,7 @@ class TestRBracket < Minitest::Test
         parser.scan_brackets(source_line_two)
         boxes = parser.boxes 
         assert_equal 2, boxes.length
+        assert_equal 6, boxes[1].position
     end
 
     #Box

@@ -20,8 +20,8 @@ class Parser
         text.each_char do |c|
             position += 1
             if c == "["
-                box = Box.new(position,line.line_number)
-                @boxes.push(box) 
+                box = Box.new(line.line_number,position)
+                @boxes.push(box)
             end
         end
     end
