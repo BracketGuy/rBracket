@@ -1,6 +1,7 @@
 class Box
     attr_accessor :line_number, :end_line, :position, :end_position,
-                  :closed, :total_children, :open_children
+                  :closed, :total_children, :open_children, :id,
+                  :parent_id
     def initialize(line_number,position)
         @line_number = line_number
         @end_line = nil
@@ -9,6 +10,8 @@ class Box
         @closed = false
         @open_children = 0
         @total_children = 0
+        @id = 10000 + line_number + position
+        @parent_id = nil
     end
 
     def close
