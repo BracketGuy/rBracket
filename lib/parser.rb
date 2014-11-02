@@ -39,8 +39,14 @@ class Parser
             position += 1
             if c == "["
                 box = Box.new(line.line_number,position)
+                unless @current_parent.nil?
+                    box.parent_id = @current_parent
+                    parent_box = find_box(@current_parent)
+                    parent_box.total_children += 1
+                end
                 @boxes.push(box)
                 @current_parent = box.id
+                puts @boxes.inspect
             elsif c == "]"
                 if @current_parent != nil
                     box = find_box(@current_parent)
@@ -51,6 +57,7 @@ class Parser
                 else
                     puts "Can't have a closing bracket before any opening bracket!"
                 end
+                puts @boxes.inspect
             end
         end
     end
