@@ -15,7 +15,7 @@ class Box
     end
 
     def close
-        if @end_position != nil && @end_line != nil && @open_children == 0
+        if @end_position != nil && @end_line != nil
             @closed = true
         end
     end

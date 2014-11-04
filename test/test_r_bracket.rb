@@ -46,13 +46,13 @@ class TestRBracket < Minitest::Test
 
     def test_parser_scan_brackets
         parser = Parser.new()
-        source_line_one = SourceFileLine.new(1,"[var:[val")
-        source_line_two = SourceFileLine.new(2,"]]")
+        source_line_one = SourceFileLine.new(1,"[[var:[val")
+        source_line_two = SourceFileLine.new(2,"]] [ var: val ]]")
         parser.scan_brackets(source_line_one)
         parser.scan_brackets(source_line_two)
         boxes = parser.boxes 
-        assert_equal 2, boxes.length
-        assert_equal 6, boxes[1].position
+        assert_equal 4, boxes.length
+        assert_equal 7, boxes[2].position
     end
 
     #Box
