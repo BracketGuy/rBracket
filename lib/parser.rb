@@ -7,6 +7,8 @@ class Parser
     def initialize()
         @boxes = []
         @current_parent = nil
+        @previous = :open
+        @depth = 0
     end
 
     def strip_white_space(source_file_line)
@@ -50,6 +52,11 @@ class Parser
                 end
                 @boxes.push(box)
                 @current_parent = box.id
+                if @previous == :open
+                    @depth += 1
+                end
+                @previous = :open
+                puts "line: #{line.line_number} id: #{box.id} depth: #{@depth}"
             elsif c == "]"
                 if @current_parent != nil
                     box = find_box(@current_parent)
@@ -63,6 +70,11 @@ class Parser
                 else
                     puts "Can't have a closing bracket before any opening bracket!"
                 end
+                if @previous == :close
+                    @depth -= 1
+                end
+                @previous = :close
+                puts "line: #{line.line_number} id: #{box.id} depth: #{@depth}"
             end
         end
     end
