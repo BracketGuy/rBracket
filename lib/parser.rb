@@ -34,6 +34,16 @@ class Parser
         end
     end
 
+    def count_boxes(source)
+        opens = source.count("[")
+        closes = source.count("]")
+        if opens == closes
+            return opens
+        else
+            return false
+        end 
+    end
+
     def scan_brackets(line)
         text = line.text
         position = 0
@@ -41,7 +51,6 @@ class Parser
             position += 1
             if c == "["
                 box = Box.new(line.line_number,position)
-                temp_val = @current_parent
                 unless @current_parent.nil?
                     box.parent_id = @current_parent
                     parent_box = find_box(@current_parent)
@@ -56,7 +65,7 @@ class Parser
                     @depth += 1
                 end
                 @previous = :open
-                puts "line: #{line.line_number} id: #{box.id} depth: #{@depth}"
+                #puts "line: #{line.line_number} id: #{box.id} depth: #{@depth}"
             elsif c == "]"
                 if @current_parent != nil
                     box = find_box(@current_parent)
@@ -74,7 +83,7 @@ class Parser
                     @depth -= 1
                 end
                 @previous = :close
-                puts "line: #{line.line_number} id: #{box.id} depth: #{@depth}"
+                #puts "line: #{line.line_number} id: #{box.id} depth: #{@depth}"
             end
         end
     end
