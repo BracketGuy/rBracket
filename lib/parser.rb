@@ -44,6 +44,46 @@ class Parser
         end 
     end
 
+    def extract_boxes(source,box_count)
+        source_array = source.split(//)
+        working_array = []
+        box_stack = []
+        pos = 0
+        offset = 0
+        box_status = nil
+
+        box_count.times do
+            found_boxes = 0
+            source_array.length.times do
+                char = source_array.shift() 
+                working_array.push(char)
+                pos += 1
+                offset += 1
+                if char == "["
+                    box_status = :open
+                    offset = 1 
+                elsif char == "]" && box_status == :open
+                    box_status = :closed
+                    if found_boxes == 0
+                        box = working_array.pop(offset)
+                        box_stack.push(box.join(""))
+                        box_id = box_stack.length
+                        working_array.push(box_id)
+                        found_boxes += 1
+                    end
+                elsif char == "]"
+                    box_status = :closed
+                end
+                if source_array == []
+                    source_array = working_array
+                    pos = 0
+                    offset = 0
+                end
+            end
+            puts box_stack.inspect
+        end
+    end
+
     def scan_brackets(line)
         text = line.text
         position = 0

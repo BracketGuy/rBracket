@@ -45,6 +45,13 @@ class TestRBracket < Minitest::Test
         assert_equal false, parser.count_boxes(bad_test_string)
     end
 
+    def test_parser_extract_boxes
+        parser = Parser.new()
+        test_string = "[foo[bar] [baz]]"
+        parser.extract_boxes(test_string,3)
+        #?????
+    end
+
     def test_parser_find_box
         parser = Parser.new()
         parser.boxes = [Box.new(1,1),Box.new(1,4)]
