@@ -48,8 +48,8 @@ class TestRBracket < Minitest::Test
     def test_parser_extract_boxes
         parser = Parser.new()
         test_string = "[foo[bar] [baz]]"
-        parser.extract_boxes(test_string,3)
-        #?????
+        boxes = parser.extract_boxes(test_string,3)
+        assert_equal ["[bar]","[baz]","[foo1 2]"], boxes 
     end
 
     def test_parser_find_box

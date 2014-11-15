@@ -80,8 +80,8 @@ class Parser
                     offset = 0
                 end
             end
-            puts box_stack.inspect
         end
+        return box_stack
     end
 
     def scan_brackets(line)
