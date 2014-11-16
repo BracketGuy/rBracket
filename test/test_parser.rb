@@ -1,5 +1,6 @@
 require "test_r_bracket"
 require "parser"
+require "source_file_line"
 
 class TestParser < Minitest::Test
 

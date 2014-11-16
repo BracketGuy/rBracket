@@ -1,32 +1,32 @@
 gem "minitest"
 require "minitest/autorun"
 require "r_bracket"
-require "source_file"
-require "source_file_line"
-require "parser"
-require "box"
+#require "source_file"
+#require "source_file_line"
+#require "parser"
+#require "box"
 
-class TestRBracket < Minitest::Test
+#class TestRBracket < Minitest::Test
 
     #SourceFile
 
-    def test_source_file_create
-        source_file = SourceFile.new(2)
-        assert_equal 2, source_file.total_lines
-    end
+    #def test_source_file_create
+    #    source_file = SourceFile.new(2)
+    #    assert_equal 2, source_file.total_lines
+    #end
 
-    def test_source_file_line_create
-        source_file_line = SourceFileLine.new(2,"test line")
-        assert_equal source_file_line.line_number, 2
-        assert_equal "test line", source_file_line.text
-    end
+    #def test_source_file_line_create
+    #    source_file_line = SourceFileLine.new(2,"test line")
+    #    assert_equal source_file_line.line_number, 2
+    #    assert_equal "test line", source_file_line.text
+    #end
 
-    def test_source_file_add_line
-        source_file = SourceFile.new(1)
-        source_file_line = SourceFileLine.new(1,"test line")
-        source_file.add_line(source_file_line)
-        assert_equal source_file_line, source_file.lines[0]
-    end
+    #def test_source_file_add_line
+    #    source_file = SourceFile.new(1)
+    #    source_file_line = SourceFileLine.new(1,"test line")
+    #    source_file.add_line(source_file_line)
+    #    assert_equal source_file_line, source_file.lines[0]
+    #end
 
     #Parser
 
@@ -72,18 +72,18 @@ class TestRBracket < Minitest::Test
 
     #Box
 
-    def test_box_create
-         box = Box.new(5,23)
-         assert_equal 5, box.line_number
-         assert_equal 23, box.position
-    end
+    #def test_box_create
+    #     box = Box.new(5,23)
+    #     assert_equal 5, box.line_number
+    #     assert_equal 23, box.position
+    #end
 
-    def test_box_close
-         box = Box.new(1,1)
-         box.end_position = 5
-         box.end_line = 1
-         box.open_children = 0
-         box.close()
-         assert_equal true, box.closed?
-    end
-end
+    #def test_box_close
+    #     box = Box.new(1,1)
+    #     box.end_position = 5
+    #     box.end_line = 1
+    #     box.open_children = 0
+    #     box.close()
+    #     assert_equal true, box.closed?
+    #end
+#end
