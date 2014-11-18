@@ -84,6 +84,31 @@ class Parser
         return box_stack
     end
 
+    def parse_box(box_text)
+        #code to handle commas and newlines goes here
+        assigns = box_text.count(":")
+        box_val = []
+        if assigns == 1
+            halves = box_text.split(':')
+            halves.each do |half|
+                half.strip!
+            end
+            if halves[1].start_with?("(")
+                # More code to eval math containers goes here. For now, we just
+                # trim parens off.
+                halves[1].delete!("(")
+                halves[1].delete!(")")
+                halves[1] = halves[1].to_i
+            end
+            variable = {name:halves[0],value:halves[1]}
+            box_val.push(variable)          
+        else
+            # Some standard way of handling syntax errors and displaying their
+            # location in the line.
+        end
+        return box_val
+    end
+
     def scan_brackets(line)
         text = line.text
         position = 0

@@ -5,8 +5,8 @@ require "source_file_line"
 class TestParser < Minitest::Test
 
     def setup
-	    @parser = Parser.new()
-	end
+        @parser = Parser.new()
+    end
 
     def test_parser_strip_white_space
         source_file_line = SourceFileLine.new(1,"line with	spaces")
@@ -25,6 +25,12 @@ class TestParser < Minitest::Test
         test_string = "[foo[bar] [baz]]"
         boxes = @parser.extract_boxes(test_string,3)
         assert_equal ["[bar]","[baz]","[foo1 2]"], boxes
+    end
+
+    def test_parse_box
+        test_box = " number : (15) "
+        test_box_tokens = @parser.parse_box(test_box)
+        assert_equal [{name:"number",value:15}], test_box_tokens
     end
 
     def test_parser_find_box
