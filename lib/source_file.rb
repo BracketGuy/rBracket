@@ -27,4 +27,12 @@ class SourceFile
             puts "Value: #{char.value} Line: #{char.line_num} Position: #{char.pos}"
         end
     end
+    
+    def to_s
+        ret_string = ""
+        @source_chars.each do |char|
+            ret_string << char.value
+        end
+        return ret_string
+    end
 end
